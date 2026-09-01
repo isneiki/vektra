@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@nuxt/eslint": "1.17.0",
     "@nuxt/fonts": "0.14.0",
     "@nuxt/image": "2.1.0",
@@ -31,6 +32,9 @@
     "@tiptap/starter-kit": "^3",
     "@tiptap/suggestion": "^3",
     "@tiptap/vue-3": "^3",
+    "better-auth": "^1.7.2",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^1.0.0-rc.4",
     "eslint": "^9.0.0 || ^10.0.0",
     "nuxt": "^4.5.2",
     "tailwindcss": "^4.0.0",
@@ -39,6 +43,9 @@
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.128"
+    "@iconify-json/lucide": "^1.2.128",
+    "@iconify-json/simple-icons": "^1.2.94",
+    "drizzle-kit": "^1.0.0-rc.4",
+    "tsx": "^4.23.13"
   }
 }
