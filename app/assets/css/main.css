@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+  --ui-bg: #ede8d0;
+  --ui-border: #c9c3a5;
+}
+
+@theme {
+  --font-display: "Rosario", sans-serif;
+  --default-font-family: "Gilam", sans-serif;
+}
+
+@theme static {
+  --color-brand-500: #4d694e;
+}
