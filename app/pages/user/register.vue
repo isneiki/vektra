@@ -30,15 +30,21 @@ const providers = [
   {
     label: "Google",
     icon: "i-simple-icons-google",
-    onClick: () => {
-      toast.add({ title: "Google", description: "Login with Google" });
+    onClick: async () => {
+      const { data, error } = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/user/dashboard",
+      });
     },
   },
   {
     label: "GitHub",
     icon: "i-simple-icons-github",
-    onClick: () => {
-      toast.add({ title: "GitHub", description: "Login with GitHub" });
+    onClick: async () => {
+      const { data, error } = await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/user/dashboard",
+      });
     },
   },
 ];

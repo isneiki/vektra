@@ -4,7 +4,7 @@ import type { ButtonProps, PricingPlanProps, PageFeatureProps } from "@nuxt/ui";
 const links = ref<ButtonProps[]>([
   {
     label: "Get started",
-    to: "/docs/getting-started",
+    to: "/user/register",
     icon: "i-lucide-file-user",
   },
   {
