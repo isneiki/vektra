@@ -1,18 +1,20 @@
 <template>
   <div>
-    <UHeader title="Cveck">
-      <template #right> </template>
-    </UHeader>
-    <UMain>
-      <NuxtPage />
-    </UMain>
+    <UApp>
+      <UHeader title="Vektra">
+        <template #right> </template>
+      </UHeader>
+      <UMain>
+        <NuxtPage />
+      </UMain>
 
-    <USeparator icon="i-lucide-file-user" />
+      <USeparator icon="i-lucide-file-user" />
 
-    <UFooter>
-      <template #left
-        >Francisco Ossian &copy; {{ new Date().getFullYear() }}</template
-      >
-    </UFooter>
+      <UFooter>
+        <template #left
+          >Francisco Ossian &copy; {{ new Date().getFullYear() }}</template
+        >
+      </UFooter>
+    </UApp>
   </div>
 </template>

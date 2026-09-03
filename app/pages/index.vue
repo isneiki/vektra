@@ -87,7 +87,7 @@ const plans = ref<PricingPlanProps[]>([
 
 <template>
   <UPage>
-    <UPageHero headline="cveck" :links="links">
+    <UPageHero headline="vektra" :links="links">
       <template #title>
         <h1 class="font-display">
           Your Best Resume
@@ -104,9 +104,9 @@ const plans = ref<PricingPlanProps[]>([
     </UPageHero>
 
     <UPageSection
-      headline="What is cveck?"
+      headline="What is Vektra?"
       title="Our AI powered resume builder"
-      description="Cveck is an AI-powered resume builder that helps you create a unique
+      description="Vektra is an AI-powered resume builder that helps you create a unique
         resume for each job application. Our AI analyzes your experience and the
         job description to create a resume that highlights what matters most for
         each opportunity."
@@ -115,7 +115,7 @@ const plans = ref<PricingPlanProps[]>([
     >
     </UPageSection>
 
-    <UPageSection title="Why choose cveck?">
+    <UPageSection title="Why choose Vektra?">
       <UPageGrid>
         <UPageFeature
           v-for="feature in features"

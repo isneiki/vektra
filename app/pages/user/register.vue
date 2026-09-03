@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import * as z from "zod";
-import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
+import type { FormSubmitEvent, AuthFormField, ButtonProps } from "@nuxt/ui";
 
 const toast = useToast();
 
 const fields: AuthFormField[] = [
+  {
+    name: "name",
+    type: "text",
+    label: "Name",
+    placeholder: "Enter your name",
+    required: true,
+  },
   {
     name: "email",
     type: "email",
@@ -19,19 +26,15 @@ const fields: AuthFormField[] = [
     placeholder: "Enter your password",
     required: true,
   },
-  {
-    name: "remember",
-    label: "Remember me",
-    type: "checkbox",
-  },
 ];
 
-const providers = [
+const providers: ButtonProps[] = [
   {
     label: "Google",
     icon: "i-simple-icons-google",
+    color: "secondary",
     onClick: async () => {
-      const { data, error } = await authClient.signIn.social({
+      const data = await authClient.signIn.social({
         provider: "google",
         callbackURL: "/user/dashboard",
       });
@@ -40,8 +43,9 @@ const providers = [
   {
     label: "GitHub",
     icon: "i-simple-icons-github",
+    color: "secondary",
     onClick: async () => {
-      const { data, error } = await authClient.signIn.social({
+      const data = await authClient.signIn.social({
         provider: "github",
         callbackURL: "/user/dashboard",
       });
@@ -50,6 +54,7 @@ const providers = [
 ];
 
 const schema = z.object({
+  name: z.string("Name is required").min(3, "Name is required"),
   email: z.email("Invalid email"),
   password: z
     .string("Password is required")
@@ -58,9 +63,29 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log("Submitted", payload);
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  const { data, error } = await authClient.signUp.email({
+    name: payload.data.name,
+    email: payload.data.email,
+    password: payload.data.password,
+    callbackURL: "/user/dashboard",
+  });
+
+  if (error) {
+    toast.add({
+      title: "Error",
+      description: error.message,
+      color: "error",
+    });
+    return;
+  }
+
+  await navigateTo("/user/dashboard");
 }
+
+definePageMeta({
+  middleware: ["logged"],
+});
 </script>
 
 <template>
@@ -68,12 +93,12 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
     <UPageCard class="w-full max-w-md">
       <UAuthForm
         :schema="schema"
-        title="Login"
-        description="Enter your credentials to access your account."
+        title="Register"
+        description="Enter your details to create an account."
         icon="i-lucide-user"
         :fields="fields"
         :providers="providers"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
       />
     </UPageCard>
   </div>

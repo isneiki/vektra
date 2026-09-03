@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from "zod";
-import type { FormSubmitEvent, AuthFormField } from "@nuxt/ui";
+import type { FormSubmitEvent, AuthFormField, ButtonProps } from "@nuxt/ui";
 
 const toast = useToast();
 
@@ -20,25 +20,33 @@ const fields: AuthFormField[] = [
     required: true,
   },
   {
-    name: "remember",
+    name: "rememberMe",
     label: "Remember me",
     type: "checkbox",
   },
 ];
 
-const providers = [
+const providers: ButtonProps[] = [
   {
     label: "Google",
     icon: "i-simple-icons-google",
-    onClick: () => {
-      toast.add({ title: "Google", description: "Login with Google" });
+    color: "secondary",
+    onClick: async () => {
+      const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/user/dashboard",
+      });
     },
   },
   {
     label: "GitHub",
     icon: "i-simple-icons-github",
-    onClick: () => {
-      toast.add({ title: "GitHub", description: "Login with GitHub" });
+    color: "secondary",
+    onClick: async () => {
+      const data = await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/user/dashboard",
+      });
     },
   },
 ];
@@ -48,12 +56,29 @@ const schema = z.object({
   password: z
     .string("Password is required")
     .min(8, "Must be at least 8 characters"),
+  rememberMe: z.boolean().optional(),
 });
 
 type Schema = z.output<typeof schema>;
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log("Submitted", payload);
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  const { data, error } = await authClient.signIn.email({
+    email: payload.data.email,
+    password: payload.data.password,
+    rememberMe: payload.data.rememberMe,
+    callbackURL: "/user/dashboard",
+  });
+
+  if (error) {
+    toast.add({
+      title: "Error",
+      description: error.message,
+      color: "error",
+    });
+    return;
+  }
+
+  await navigateTo("/user/dashboard");
 }
 </script>
 
@@ -63,11 +88,11 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
       <UAuthForm
         :schema="schema"
         title="Login"
-        description="Enter your credentials to access your account."
+        description="Enter your details to log in."
         icon="i-lucide-user"
         :fields="fields"
         :providers="providers"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
       />
     </UPageCard>
   </div>
