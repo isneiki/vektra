@@ -93,26 +93,21 @@ const plans = ref<PricingPlanProps[]>([
     <UPageHero headline="vektra" :links="links">
       <template #title>
         <h1 class="font-display">
-          {{ $t('title') }}
-          <span class="text-brand-500/80">{{ $t('title_stilized') }}</span>
+          {{ $t('hero_title') }}
+          <span class="text-brand-500/80">{{ $t('hero_title_stilized') }}</span>
         </h1>
       </template>
       <template #description>
         <p>
-          Stop sending the same generic resume everywhere. Our AI analyzes your
-          experience and the job description to create a resume that highlights
-          what matters most for each opportunity.
+          {{ $t("hero_description") }}
         </p>
       </template>
     </UPageHero>
 
     <UPageSection
-      headline="What is Vektra?"
-      title="Our AI powered resume builder"
-      description="Vektra is an AI-powered resume builder that helps you create a unique
-        resume for each job application. Our AI analyzes your experience and the
-        job description to create a resume that highlights what matters most for
-        each opportunity."
+      :headline="$t('what_is_vektra_headline')"
+      :title="$t('what_is_vektra_title')"
+      :description="$t('what_is_vektra_description')"
       icon="i-lucide-circle-question-mark"
       id="learn"
     >

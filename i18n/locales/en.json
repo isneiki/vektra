@@ -1,4 +1,21 @@
 {
-    "title": "Your Best Resume",
-    "title_stilized": "For Every Job."
+    "hero_title": "Your Best Resume",
+    "hero_title_stilized": "For Every Job.",
+    "hero_description": "Stop sending the same generic resume everywhere. Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity.",
+
+    "what_is_vektra_headline": "What is Vektra?",
+    "what_is_vektra_title": "Our AI powered resume builder",
+    "what_is_vektra_description": "Vektra is an AI-powered resume builder that helps you create a unique resume for each job application. Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity.",
+
+    "why_choose_vektra": "Why choose Vektra?",
+
+    "feature_ai_powered_resume_builder_title": "AI-Powered Resume Builder",
+    "feature_ai_powered_resume_builder_description": "Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity.",
+
+    "feature_tailored_for_every_job_title": "Tailored for Every Job",
+    "feature_tailored_for_every_job_description": "Stop sending the same generic resume everywhere. Our AI creates a unique resume for each job application, increasing your chances of landing an interview.",
+
+    "feature_easy_to_use_title": "Easy to use",
+    "feature_easy_to_use_description": "Our user-friendly interface makes it easy to create and customize your resume in minutes, without any technical skills required."
+    
 }

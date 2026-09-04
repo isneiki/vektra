@@ -1,5 +1,9 @@
 {
-    "title": "Seu Melhor Currículo",
-    "title_stilized": "Para Toda Vaga.",
-    "Stop sending the same generic resume everywhere. Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity. ": ""
+    "hero_title": "Seu Melhor Currículo",
+    "hero_title_stilized": "Para Cada Vaga.",
+    "hero_description": "Pare de enviar o mesmo currículo genérico para todo lugar. Nossa IA analiza a sua experiência e a descrição da vaga para criar um currículo novo que enfatiza o que mais importa para cada oportunidade.",
+
+    "what_is_vektra_headline": "O que é o Vektra?",
+    "what_is_vektra_title": "Nosso criador de currículos com IA",
+    "what_is_vektra_description": ""
 }
