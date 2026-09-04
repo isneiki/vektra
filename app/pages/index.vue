@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { ButtonProps, PricingPlanProps, PageFeatureProps } from "@nuxt/ui";
+const { locale, setLocale } = useI18n()
+const localePath = useLocalePath()
+
 
 const links = ref<ButtonProps[]>([
   {
@@ -90,8 +93,8 @@ const plans = ref<PricingPlanProps[]>([
     <UPageHero headline="vektra" :links="links">
       <template #title>
         <h1 class="font-display">
-          Your Best Resume
-          <span class="text-brand-500/80">For Every Job.</span>
+          {{ $t('title') }}
+          <span class="text-brand-500/80">{{ $t('title_stilized') }}</span>
         </h1>
       </template>
       <template #description>

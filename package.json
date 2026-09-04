@@ -15,6 +15,7 @@
     "@nuxt/fonts": "0.14.0",
     "@nuxt/image": "2.1.0",
     "@nuxt/ui": "4.11.0",
+    "@nuxtjs/i18n": "10.6.0",
     "@tiptap/core": "^3",
     "@tiptap/extension-bubble-menu": "^3",
     "@tiptap/extension-code": "^3",

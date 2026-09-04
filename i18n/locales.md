@@ -1,0 +1,1 @@
+TODO: finalize english and portuguese configuration for home page (index) and enhanche this readme.
