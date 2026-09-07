@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 import type { ButtonProps, PricingPlanProps, PageFeatureProps } from "@nuxt/ui";
-const { locale, setLocale } = useI18n()
-const localePath = useLocalePath()
-
+const { locale, setLocale } = useI18n();
+const localePath = useLocalePath();
 
 const links = ref<ButtonProps[]>([
   {
-    label: "Get started",
+    label: `${$t("get_started")}`,
     to: "/user/register",
     icon: "i-lucide-file-user",
   },
   {
-    label: "Learn more",
+    label: `${$t("learn_more")}`,
     to: "#learn",
     color: "neutral",
     variant: "subtle",
@@ -21,67 +20,65 @@ const links = ref<ButtonProps[]>([
 
 const features = ref<PageFeatureProps[]>([
   {
-    title: "AI-Powered Resume Builder",
-    description:
-      "Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity.",
+    title: `${$t("feature_ai_powered_resume_builder_title")}`,
+    description: `${$t("feature_ai_powered_resume_builder_description")}`,
     icon: "i-lucide-robot",
   },
   {
-    title: "Tailored for Every Job",
-    description:
-      "Stop sending the same generic resume everywhere. Our AI creates a unique resume for each job application, increasing your chances of landing an interview.",
+    title: `${$t("feature_tailored_for_every_job_title")}`,
+    description: `${$t("feature_tailored_for_every_job_description")}`,
     icon: "i-lucide-file-text",
   },
   {
-    title: "Easy to Use",
-    description:
-      "Our user-friendly interface makes it easy to create and customize your resume in minutes, without any technical skills required.",
+    title: `${$t("feature_easy_to_use_title")}`,
+    description: `${$t("feature_easy_to_use_description")}`,
     icon: "i-lucide-magic-wand",
   },
 ]);
 
+const free_plans_features = computed(() =>
+  $tm("plans_free_features").map((feature: string) => feature),
+);
+
+const pro_plans_features = computed(() =>
+  $tm("plans_pro_features").map((feature: string) => feature),
+);
+
+const pro_plus_plans_features = computed(() =>
+  $tm("plans_pro_plus_features").map((feature: string) => feature),
+);
+
 const plans = ref<PricingPlanProps[]>([
   {
-    title: "Free",
-    price: "$0",
-    description: "For individuals just getting started.",
-    features: ["1 use per day", "Basic analytics", "Community support"],
+    title: $t("plans_free_title"),
+    price: $t("plans_free_price"),
+    description: $t("plans_free_description"),
+    features: free_plans_features.value,
     button: {
-      label: "Get started",
-      to: "/docs/getting-started",
+      label: $t("get_started"),
+      to: "/user/register",
       variant: "outline",
     },
   },
   {
-    title: "Pro",
-    price: "$19/mo",
-    description: "For professionals that need a job quickly.",
-    scale: true,
-    features: [
-      "15 uses per day",
-      "Advanced analytics",
-      "Technical support",
-      "Best cost-benefit",
-    ],
+    title: $t("plans_pro_title"),
+    price: $t("plans_pro_price"),
+    description: $t("plans_pro_description"),
+    features: pro_plans_features.value,
     button: {
-      label: "Upgrade to Pro",
-      to: "/docs/getting-started/theme/design-system",
+      label: $t("plans_pro_cta"),
+      to: "/user/register",
       variant: "solid",
     },
   },
   {
-    title: "Pro+",
-    price: "$25/mo",
-    description: "For professionals looking for a high paying job.",
-    features: [
-      "50 uses per day",
-      "Advanced analytics",
-      "Priority support",
-      "Best models",
-    ],
+    title: $t("plans_pro_plus_title"),
+    price: $t("plans_pro_plus_price"),
+    description: $t("plans_pro_plus_description"),
+    features: pro_plus_plans_features.value,
     button: {
-      label: "Upgrade to Pro+",
-      to: "/docs/getting-started/theme/design-system",
+      label: $t("plans_pro_plus_cta"),
+      to: "/user/register",
       variant: "solid",
     },
   },
@@ -93,8 +90,8 @@ const plans = ref<PricingPlanProps[]>([
     <UPageHero headline="vektra" :links="links">
       <template #title>
         <h1 class="font-display">
-          {{ $t('hero_title') }}
-          <span class="text-brand-500/80">{{ $t('hero_title_stilized') }}</span>
+          {{ $t("hero_title") }}
+          <span class="text-brand-500/80">{{ $t("hero_title_stilized") }}</span>
         </h1>
       </template>
       <template #description>
@@ -113,7 +110,7 @@ const plans = ref<PricingPlanProps[]>([
     >
     </UPageSection>
 
-    <UPageSection title="Why choose Vektra?">
+    <UPageSection :title="$t('why_choose_vektra')">
       <UPageGrid>
         <UPageFeature
           v-for="feature in features"
@@ -124,16 +121,16 @@ const plans = ref<PricingPlanProps[]>([
     </UPageSection>
 
     <UPageSection
-      title="Pricing"
-      description="Choose the plan that fits your current needs."
+      :title="$t('pricing_title')"
+      :description="$t('pricing_description')"
     >
       <UPricingPlans :plans="plans" scale />
     </UPageSection>
 
     <UPageSection>
       <UPageCTA
-        title="Build your customized curriculum vitae now!"
-        description="You can start for free today with no commitment using our basic models."
+        :title="$t('cta_title')"
+        :description="$t('cta_description')"
         :links="links"
       />
     </UPageSection>

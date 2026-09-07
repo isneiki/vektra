@@ -71,6 +71,24 @@ export const account = pgTable(
   ],
 );
 
+export const subscription = pgTable("subscription", {
+  id: text("id").primaryKey(),
+
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+
+  plan: text("plan").notNull().default("free"),
+
+  status: text("status").notNull().default("active"),
+
+  startedAt: timestamp("started_at").notNull(),
+  expiresAt: timestamp("expires_at"),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const verification = pgTable(
   "verification",
   {

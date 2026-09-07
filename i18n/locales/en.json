@@ -2,6 +2,8 @@
     "hero_title": "Your Best Resume",
     "hero_title_stilized": "For Every Job.",
     "hero_description": "Stop sending the same generic resume everywhere. Our AI analyzes your experience and the job description to create a resume that highlights what matters most for each opportunity.",
+    "get_started": "Get started",
+    "learn_more": "Learn more",
 
     "what_is_vektra_headline": "What is Vektra?",
     "what_is_vektra_title": "Our AI powered resume builder",
@@ -16,6 +18,42 @@
     "feature_tailored_for_every_job_description": "Stop sending the same generic resume everywhere. Our AI creates a unique resume for each job application, increasing your chances of landing an interview.",
 
     "feature_easy_to_use_title": "Easy to use",
-    "feature_easy_to_use_description": "Our user-friendly interface makes it easy to create and customize your resume in minutes, without any technical skills required."
+    "feature_easy_to_use_description": "Our user-friendly interface makes it easy to create and customize your resume in minutes, without any technical skills required.",
     
+    "pricing_title": "Pricing",
+    "pricing_description": "Choose the plan that fits your current needs.",
+
+    "plans_free_title": "Free",
+    "plans_free_price": "$0",
+    "plans_free_description": "Get started with our basic models and create your first resume for free.",
+    "plans_free_features": [
+        "1 Free use per day",
+        "Basic analytics",
+        "Community support"
+    ],
+
+    "plans_pro_title": "Pro",
+    "plans_pro_price": "$9.99",
+    "plans_pro_description": "Unlock the full potential of Vektra with our Pro plan, including more uses and advanced analytics.",
+    "plans_pro_features": [
+        "15 Uses per day",
+        "Advanced analytics",
+        "Priority support",
+        "Best cost benefit"
+    ],
+    "plans_pro_cta": "Upgrade to Pro",
+
+    "plans_pro_plus_title": "Pro+",
+    "plans_pro_plus_price": "$19.99",
+    "plans_pro_plus_description": "Get the most out of Vektra with our Pro Plus plan, including unlimited uses and premium support.",
+    "plans_pro_plus_features": [
+        "Unlimited uses",
+        "Advanced analytics",
+        "Premium support",
+        "Best models available"
+    ],
+    "plans_pro_plus_cta": "Upgrade to Pro Plus",
+
+    "cta_title": "Build your customized curriculum vitae now!",
+    "cta_description": "You can start for free today with no commitment using our basic models."
 }

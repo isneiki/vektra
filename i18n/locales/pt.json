@@ -1,9 +1,59 @@
 {
-    "hero_title": "Seu Melhor Currículo",
-    "hero_title_stilized": "Para Cada Vaga.",
-    "hero_description": "Pare de enviar o mesmo currículo genérico para todo lugar. Nossa IA analiza a sua experiência e a descrição da vaga para criar um currículo novo que enfatiza o que mais importa para cada oportunidade.",
+    "hero_title": "",
+    "hero_title_stilized": "",
+    "hero_description": "",
+    "get_started": "",
+    "learn_more": "",
 
-    "what_is_vektra_headline": "O que é o Vektra?",
-    "what_is_vektra_title": "Nosso criador de currículos com IA",
-    "what_is_vektra_description": ""
+    "what_is_vektra_headline": "",
+    "what_is_vektra_title": "",
+    "what_is_vektra_description": "",
+
+    "why_choose_vektra": "",
+
+    "feature_ai_powered_resume_builder_title": "",
+    "feature_ai_powered_resume_builder_description": "",
+
+    "feature_tailored_for_every_job_title": "",
+    "feature_tailored_for_every_job_description": "",
+
+    "feature_easy_to_use_title": "",
+    "feature_easy_to_use_description": "",
+    
+    "pricing_title": "",
+    "pricing_description": "",
+
+    "plans_free_title": "",
+    "plans_free_price": "",
+    "plans_free_description": "",
+    "plans_free_features": [
+        "",
+        "",
+        ""
+    ],
+
+    "plans_pro_title": "",
+    "plans_pro_price": "",
+    "plans_pro_description": "",
+    "plans_pro_features": [
+        "",
+        "",
+        "",
+        ""
+    ],
+    "plans_pro_cta": "",
+
+    "plans_pro_plus_title": "",
+    "plans_pro_plus_price": "",
+    "plans_pro_plus_description": "",
+    "plans_pro_plus_features": [
+        "",
+        "",
+        "",
+        ""
+    ],
+    "plans_pro_plus_cta": "",
+
+    "cta_title": "",
+    "cta_description": ""
 }

@@ -80,6 +80,10 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
   await navigateTo("/user/dashboard");
 }
+
+definePageMeta({
+  middleware: "logged",
+});
 </script>
 
 <template>
