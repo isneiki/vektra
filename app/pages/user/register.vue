@@ -85,6 +85,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
 definePageMeta({
   middleware: ["logged"],
+  layout: "landing",
 });
 </script>
 

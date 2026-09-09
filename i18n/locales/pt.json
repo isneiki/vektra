@@ -1,59 +1,62 @@
 {
-    "hero_title": "",
-    "hero_title_stilized": "",
-    "hero_description": "",
-    "get_started": "",
-    "learn_more": "",
+    "hero_title": "Seu Melhor Currículo",
+    "hero_title_stilized": "Para qualquer Emprego.",
+    "hero_description": "Pare de mandar o mesmo currículo genérico em todos os lugares. A nossa IA analiza a sua experiência e a descrição da vaga para criar um currículo que destaca o que mais importa para cada oportunidade.",
+    "get_started": "Comece já",
+    "learn_more": "Mais sobre",
 
-    "what_is_vektra_headline": "",
-    "what_is_vektra_title": "",
-    "what_is_vektra_description": "",
+    "sign_in": "Entrar",
+    "sign_up": "Cadastrar-se",
 
-    "why_choose_vektra": "",
+    "what_is_vektra_headline": "O que é o Vektra?",
+    "what_is_vektra_title": "Nosso criador de currículos com IA",
+    "what_is_vektra_description": "Vektra é uma IA que te ajuda a criar um currículo único para cada vaga de emprego. A nossa IA analiza a sua experiência e a descrição da vaga para criar um currículo que destaca o que mais importa para cada oportunidade.",
 
-    "feature_ai_powered_resume_builder_title": "",
-    "feature_ai_powered_resume_builder_description": "",
+    "why_choose_vektra": "Por que escolher o Vektra?",
 
-    "feature_tailored_for_every_job_title": "",
-    "feature_tailored_for_every_job_description": "",
+    "feature_ai_powered_resume_builder_title": "Criador de currículos com IA",
+    "feature_ai_powered_resume_builder_description": "A nossa IA analiza sua experiência e a descrição da vaga para criar um currículo que destaca o que importa mais para cada oportunidade.",
 
-    "feature_easy_to_use_title": "",
-    "feature_easy_to_use_description": "",
+    "feature_tailored_for_every_job_title": "Sob medida para qualquer vaga",
+    "feature_tailored_for_every_job_description": "Pare de mandar o mesmo currículo genérico para todos os lugares. A nossa IA cria um currículo único para cada vaga, aumentando as suas chances de ser chamado para uma entrevista.",
+
+    "feature_easy_to_use_title": "Fácil de usar",
+    "feature_easy_to_use_description": "A nossa interface simples faz com que seja fácil de criar e customizar seu currículo em minutos, sem qualquer habilidade técnica necessária.",
     
-    "pricing_title": "",
-    "pricing_description": "",
+    "pricing_title": "Planos",
+    "pricing_description": "Escolha o plano que melhor se encaixe as suas necessidades.",
 
-    "plans_free_title": "",
-    "plans_free_price": "",
-    "plans_free_description": "",
+    "plans_free_title": "Gratuito",
+    "plans_free_price": "R$0",
+    "plans_free_description": "Comece já com os nossos planos básicos e crie o seu primeiro currículo de graça.",
     "plans_free_features": [
-        "",
-        "",
-        ""
+        "1 uso gratuito por dia",
+        "Análises básicas",
+        "Suporte da Comunidade"
     ],
 
-    "plans_pro_title": "",
-    "plans_pro_price": "",
-    "plans_pro_description": "",
+    "plans_pro_title": "Pro",
+    "plans_pro_price": "R$49.99",
+    "plans_pro_description": "Desbloqueie o potencial completo do Vektra com o plano Pro, incluindo mais usos e análises avançadas.",
     "plans_pro_features": [
-        "",
-        "",
-        "",
-        ""
+        "15 usos por dia",
+        "Análises avançadas",
+        "Prioridade de Suporte",
+        "Melhor Custo-Benefício"
     ],
-    "plans_pro_cta": "",
+    "plans_pro_cta": "Melhore para Pro",
 
-    "plans_pro_plus_title": "",
-    "plans_pro_plus_price": "",
-    "plans_pro_plus_description": "",
+    "plans_pro_plus_title": "Pro+",
+    "plans_pro_plus_price": "R$104.99",
+    "plans_pro_plus_description": "Utilize o máximo do Vektra com o plano Pro+, incluindo usos ilimitados e suporte premium.",
     "plans_pro_plus_features": [
-        "",
-        "",
-        "",
-        ""
+        "Usos Ilimitados",
+        "Análises avançadas",
+        "Suporte Premium",
+        "Melhores modelos disponíveis"
     ],
-    "plans_pro_plus_cta": "",
+    "plans_pro_plus_cta": "Melhore para Pro+",
 
-    "cta_title": "",
-    "cta_description": ""
+    "cta_title": "Faça o seu curriculum vitae agora!",
+    "cta_description": "Você pode começar hoje, sem cobranças, usando o nosso modelo base."
 }

@@ -83,6 +83,10 @@ const plans = ref<PricingPlanProps[]>([
     },
   },
 ]);
+
+definePageMeta({
+  layout: "landing",
+});
 </script>
 
 <template>
