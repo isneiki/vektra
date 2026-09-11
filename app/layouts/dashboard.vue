@@ -68,6 +68,7 @@ const { data: session } = await authClient.getSession();
 
 <template>
   <div class="flex">
+  <UDashboardGroup class="flex h-screen w-screen overflow-hidden">
     <UDashboardSidebar
       collapsible
       resizable
@@ -130,8 +131,17 @@ const { data: session } = await authClient.getSession();
       </template>
     </UDashboardSidebar>
 
-    <UMain>
-      <NuxtPage />
-    </UMain>
+    <UDashboardPanel>
+      <template #header>
+        <UDashboardNavbar title="Dashboard" />
+      </template>
+
+      <template #body>
+        <div class="flex justify-center items-center h-full w-full">
+          <slot></slot>
+        </div>
+      </template>
+    </UDashboardPanel>
+  </UDashboardGroup>
   </div>
 </template>

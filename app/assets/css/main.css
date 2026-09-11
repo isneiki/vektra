@@ -15,6 +15,6 @@
   --color-brand-500: #4d694e;
 }
 
-input[type="text"] {
+textarea {
   @apply border border-default;
 }
