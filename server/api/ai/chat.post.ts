@@ -1,6 +1,8 @@
 import { auth } from "../../utils/auth";
 import { routePrompt } from "../../utils/ai/router";
 import { prompts } from "../../utils/ai/prompts";
+import { freeModel } from "~~/server/utils/ai/models";
+import openai from "../../utils/openai";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,7 +11,6 @@ interface Message {
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-
   const session = await auth.api.getSession({
     headers: event.headers,
   });
@@ -29,10 +30,10 @@ export default defineEventHandler(async (event) => {
 
   // Actual response
   const response = await openai.responses.create({
-    model: "gpt-5.6-luna",
+    model: freeModel,
     prompt: prompts[route],
     input: messages,
-    store: true,
+    store: false,
   });
 
   return response.output_text;

@@ -38,6 +38,7 @@
     "dotenv": "^17.4.2",
     "drizzle-orm": "^1.0.0-rc.4",
     "eslint": "^9.0.0 || ^10.0.0",
+    "isomorphic-dompurify": "^4.2.0",
     "marked": "^18.0.12",
     "nuxt": "^4.5.2",
     "openai": "^7.15.0",

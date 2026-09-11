@@ -1,3 +1,5 @@
+import { freeModel } from "./models";
+import { prompts } from "./prompts";
 import openai from "../openai";
 
 export type PromptRoute = "general" | "resume" | "technical";
@@ -9,9 +11,10 @@ interface Message {
 
 export async function routePrompt(messages: Message[]): Promise<PromptRoute> {
   const response = await openai.responses.create({
-    model: "gpt-5.6-luna",
+    model: freeModel,
     prompt: prompts.router,
     input: messages,
+    store: false,
   });
 
   const route = response.output_text.trim();

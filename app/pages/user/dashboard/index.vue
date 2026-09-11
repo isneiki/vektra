@@ -2,7 +2,7 @@
 // TODO: do something when this returns an error.
 const { data: session } = await authClient.getSession();
 import { marked } from "marked";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 const renderMarkdown = (content: string) => {
   const html = marked.parse(content) as string;
@@ -186,54 +186,3 @@ definePageMeta({
     </div>
   </UContainer>
 </template>
-
-<!-- <template>
-  <UContainer
-    class="absolute md:border-2 md:rounded-xl md:border-default flex flex-col justify-end h-[calc(100vh-8rem)]"
-  >
-    <div class="flex-1 overflow-y-auto p-4 mb-2">
-      <div v-for="message in messages" :key="message.content" class="mb-2">
-        <div
-          :class="message.role === 'user' ? 'text-primary' : 'text-secondary'"
-        >
-          <div v-if="message.role === 'user'" class="flex items-center">
-            <NuxtImg
-              v-if="session?.user.image"
-              :src="session.user.image"
-              alt="User Avatar"
-              class="w-7 h-7 rounded-full mr-2"
-            />
-
-            <span class="font-semibold">{{ session?.user.name }}</span>
-          </div>
-
-          <div v-else class="flex items-center">
-            <UIcon name="i-lucide-bot" class="size-5 text-secondary mr-2" />
-            <p>VektrAI</p>
-          </div>
-
-          <div
-            v-if="message.role === 'assistant'"
-            class="prose prose-sm dark:prose-invert max-w-none"
-            v-html="renderMarkdown(message.content)"
-          ></div>
-          <div v-else class="prose prose-sm dark:prose-invert max-w-none">
-            {{ message.content }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <UForm @submit.prevent="handleUserMessage()" class="mb-2">
-      <UFormField name="chat">
-        <UTextarea
-          v-model="userMessage"
-          :rows="1"
-          autoresize
-          placeholder="Digite sua mensagem..."
-          class="w-full"
-          @keydown="handleInputKeydown"
-        />
-      </UFormField>
-    </UForm>
-  </UContainer>
-</template> -->

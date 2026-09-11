@@ -67,7 +67,8 @@ const { data: session } = await authClient.getSession();
 </script>
 
 <template>
-  <UDashboardGroup>
+  <div class="flex">
+  <UDashboardGroup class="flex h-screen w-screen overflow-hidden">
     <UDashboardSidebar
       collapsible
       resizable
@@ -137,9 +138,10 @@ const { data: session } = await authClient.getSession();
 
       <template #body>
         <div class="flex justify-center items-center h-full w-full">
-          <slot />
+          <slot></slot>
         </div>
       </template>
     </UDashboardPanel>
   </UDashboardGroup>
+  </div>
 </template>
