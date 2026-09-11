@@ -14,3 +14,7 @@
 @theme static {
   --color-brand-500: #4d694e;
 }
+
+input[type="text"] {
+  @apply border border-default;
+}

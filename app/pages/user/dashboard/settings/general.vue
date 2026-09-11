@@ -5,4 +5,4 @@ definePageMeta({
 });
 </script>
 
-<template>Bruh</template>
+<template>Geral</template>
