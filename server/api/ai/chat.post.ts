@@ -2,6 +2,7 @@ import { auth } from "../../utils/auth";
 import { routePrompt } from "../../utils/ai/router";
 import { prompts } from "../../utils/ai/prompts";
 import { freeModel } from "~~/server/utils/ai/models";
+import type { ChatResponse } from "#shared/types/chat";
 import openai from "../../utils/openai";
 
 interface Message {
@@ -36,5 +37,6 @@ export default defineEventHandler(async (event) => {
     store: false,
   });
 
-  return response.output_text;
+  // You may complain, but this just works. Okay?
+  return JSON.parse(response.output_text) as ChatResponse;
 });

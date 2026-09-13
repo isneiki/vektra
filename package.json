@@ -16,6 +16,7 @@
     "@nuxt/image": "2.1.0",
     "@nuxt/ui": "4.11.0",
     "@nuxtjs/i18n": "^10.6.0",
+    "@sparticuz/chromium": "^153.0.0",
     "@tiptap/core": "^3",
     "@tiptap/extension-bubble-menu": "^3",
     "@tiptap/extension-code": "^3",
@@ -42,6 +43,7 @@
     "marked": "^18.0.12",
     "nuxt": "^4.5.2",
     "openai": "^7.15.0",
+    "playwright": "^1.63.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.6.3 || ^6.0.0 || ^7.0.0",
     "vue": "^3.5.41",
@@ -50,6 +52,7 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.128",
     "@iconify-json/simple-icons": "^1.2.94",
+    "@tailwindcss/typography": "^0.5.20",
     "drizzle-kit": "^1.0.0-rc.4",
     "tsx": "^4.23.13"
   }

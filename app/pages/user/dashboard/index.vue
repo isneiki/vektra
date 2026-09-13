@@ -2,11 +2,12 @@
 // TODO: do something when this returns an error.
 const { data: session } = await authClient.getSession();
 import { marked } from "marked";
+import type { ChatResponse } from "#shared/types/chat";
+
 import DOMPurify from "isomorphic-dompurify";
 
 const renderMarkdown = (content: string) => {
   const html = marked.parse(content) as string;
-
   return DOMPurify.sanitize(html);
 };
 
@@ -15,6 +16,7 @@ interface Message {
   content: string;
 }
 
+const messagesContainer = ref<HTMLElement | null>(null);
 const messages = ref<Message[]>([
   {
     role: "assistant",
@@ -24,6 +26,8 @@ const messages = ref<Message[]>([
 ]);
 
 const userMessage = ref<string>("");
+const resumeResponse = ref<string>("");
+const lastMessageWasResume = ref<boolean>(false);
 const isLoading = ref<boolean>(false);
 
 const handleUserMessage = async () => {
@@ -43,19 +47,56 @@ const handleUserMessage = async () => {
 
   // Call the API to get the assistant's response
   try {
-    const res = await useFetch("/api/ai/chat", {
+    const res = await $fetch<ChatResponse>("/api/ai/chat", {
       method: "POST",
       body: {
         messages: messages.value,
       },
     });
 
-    if (res.data.value) {
-      messages.value.push({
-        role: "assistant",
-        content: res.data.value,
-      });
+    if (!res) {
+      throw new Error("No response from the server");
     }
+
+    messages.value.push({
+      role: "assistant",
+      content: res.message,
+    });
+
+    // Used to put the "Generate Resume" button in the last message if the response type is "resume"
+    if (res.type === "resume") {
+      lastMessageWasResume.value = true;
+      resumeResponse.value = res.resume!;
+    } else {
+      lastMessageWasResume.value = false;
+    }
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const handleGenerateResume = async () => {
+  isLoading.value = true;
+
+  try {
+    const res = await $fetch("/api/cv/pdf", {
+      method: "POST",
+      body: {
+        html: resumeResponse.value,
+      },
+      responseType: "blob",
+    });
+
+    const url = URL.createObjectURL(res);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "document.pdf";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error generating resume:", error);
   } finally {
     isLoading.value = false;
   }
@@ -68,6 +109,24 @@ const handleInputKeydown = (event: KeyboardEvent) => {
   }
 };
 
+const scrollToBottom = async () => {
+  await nextTick();
+
+  if (messagesContainer.value) {
+    messagesContainer.value.scrollTo({
+      top: messagesContainer.value.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+};
+watch(
+  [messages, isLoading],
+  () => {
+    scrollToBottom();
+  },
+  { deep: true },
+);
+
 definePageMeta({
   middleware: "logged",
   layout: "dashboard",
@@ -79,7 +138,7 @@ definePageMeta({
     class="flex h-[calc(100vh-10rem)] flex-col overflow-hidden md:ml-12 md:rounded-xl md:border md:border-default"
   >
     <!-- Messages -->
-    <div class="flex-1 overflow-y-auto px-4 py-6">
+    <div ref="messagesContainer" class="flex-1 overflow-y-auto px-4 py-6">
       <div class="mx-auto flex max-w-3xl flex-col gap-6">
         <div
           v-for="(message, index) in messages"
@@ -104,13 +163,24 @@ definePageMeta({
                 class="prose prose-sm dark:prose-invert max-w-none"
                 v-html="renderMarkdown(message.content)"
               />
+
+              <div
+                v-if="lastMessageWasResume && index === messages.length - 1"
+                class="mt-1"
+              >
+                <UButton @click="handleGenerateResume" variant="outline">
+                  Gerar Curriculo
+                </UButton>
+              </div>
             </div>
           </template>
 
           <!-- User -->
           <template v-else>
             <div class="flex max-w-[85%] flex-col items-end">
-              <div class="rounded-2xl bg-primary px-4 py-3 text-sm text-white">
+              <div
+                class="w-full rounded-2xl bg-primary px-4 py-3 text-sm text-white"
+              >
                 <p class="whitespace-pre-wrap">
                   {{ message.content }}
                 </p>
@@ -121,12 +191,11 @@ definePageMeta({
               v-if="session?.user.image"
               :src="session.user.image"
               alt="User Avatar"
-              class="size-8 shrink-0 rounded-full"
+              class="size-8 shrink-0 rounded-full hidden md:block"
             />
-
             <div
               v-else
-              class="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted"
+              class="size-8 shrink-0 items-center justify-center rounded-full bg-muted hidden md:flex"
             >
               <UIcon name="i-lucide-user" class="size-4" />
             </div>
