@@ -26,6 +26,7 @@ const messages = ref<Message[]>([
 ]);
 
 const userMessage = ref<string>("");
+const resumeResponse = ref<string>("");
 const lastMessageWasResume = ref<boolean>(false);
 const isLoading = ref<boolean>(false);
 
@@ -65,9 +66,37 @@ const handleUserMessage = async () => {
     // Used to put the "Generate Resume" button in the last message if the response type is "resume"
     if (res.type === "resume") {
       lastMessageWasResume.value = true;
+      resumeResponse.value = res.resume!;
     } else {
       lastMessageWasResume.value = false;
     }
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const handleGenerateResume = async () => {
+  isLoading.value = true;
+
+  try {
+    const res = await $fetch("/api/cv/pdf", {
+      method: "POST",
+      body: {
+        html: resumeResponse.value,
+      },
+      responseType: "blob",
+    });
+
+    const url = URL.createObjectURL(res);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "document.pdf";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error generating resume:", error);
   } finally {
     isLoading.value = false;
   }
@@ -121,7 +150,9 @@ definePageMeta({
                 v-if="lastMessageWasResume && index === messages.length - 1"
                 class="mt-1"
               >
-                <UButton variant="outline"> Gerar Curriculo </UButton>
+                <UButton @click="handleGenerateResume" variant="outline">
+                  Gerar Curriculo
+                </UButton>
               </div>
             </div>
           </template>
