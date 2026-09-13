@@ -1,4 +1,5 @@
-import { chromium } from "playwright-core";
+import { chromium as playwright } from "playwright-core";
+import chromium from "@sparticuz/chromium";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{
@@ -12,7 +13,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const browser = await chromium.launch();
+  const browser = await playwright.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: true,
+  });
 
   try {
     const page = await browser.newPage();
