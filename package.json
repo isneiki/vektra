@@ -52,6 +52,7 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.128",
     "@iconify-json/simple-icons": "^1.2.94",
+    "@tailwindcss/typography": "^0.5.20",
     "drizzle-kit": "^1.0.0-rc.4",
     "tsx": "^4.23.13"
   }

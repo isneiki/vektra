@@ -8,7 +8,6 @@ import DOMPurify from "isomorphic-dompurify";
 
 const renderMarkdown = (content: string) => {
   const html = marked.parse(content) as string;
-
   return DOMPurify.sanitize(html);
 };
 
@@ -17,6 +16,7 @@ interface Message {
   content: string;
 }
 
+const messagesContainer = ref<HTMLElement | null>(null);
 const messages = ref<Message[]>([
   {
     role: "assistant",
@@ -109,6 +109,24 @@ const handleInputKeydown = (event: KeyboardEvent) => {
   }
 };
 
+const scrollToBottom = async () => {
+  await nextTick();
+
+  if (messagesContainer.value) {
+    messagesContainer.value.scrollTo({
+      top: messagesContainer.value.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+};
+watch(
+  [messages, isLoading],
+  () => {
+    scrollToBottom();
+  },
+  { deep: true },
+);
+
 definePageMeta({
   middleware: "logged",
   layout: "dashboard",
@@ -120,7 +138,7 @@ definePageMeta({
     class="flex h-[calc(100vh-10rem)] flex-col overflow-hidden md:ml-12 md:rounded-xl md:border md:border-default"
   >
     <!-- Messages -->
-    <div class="flex-1 overflow-y-auto px-4 py-6">
+    <div ref="messagesContainer" class="flex-1 overflow-y-auto px-4 py-6">
       <div class="mx-auto flex max-w-3xl flex-col gap-6">
         <div
           v-for="(message, index) in messages"
@@ -160,7 +178,9 @@ definePageMeta({
           <!-- User -->
           <template v-else>
             <div class="flex max-w-[85%] flex-col items-end">
-              <div class="rounded-2xl bg-primary px-4 py-3 text-sm text-white">
+              <div
+                class="w-full rounded-2xl bg-primary px-4 py-3 text-sm text-white"
+              >
                 <p class="whitespace-pre-wrap">
                   {{ message.content }}
                 </p>
@@ -171,12 +191,11 @@ definePageMeta({
               v-if="session?.user.image"
               :src="session.user.image"
               alt="User Avatar"
-              class="size-8 shrink-0 rounded-full"
+              class="size-8 shrink-0 rounded-full hidden md:block"
             />
-
             <div
               v-else
-              class="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted"
+              class="size-8 shrink-0 items-center justify-center rounded-full bg-muted hidden md:flex"
             >
               <UIcon name="i-lucide-user" class="size-4" />
             </div>
