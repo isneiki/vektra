@@ -2,6 +2,8 @@
 // TODO: do something when this returns an error.
 const { data: session } = await authClient.getSession();
 import { marked } from "marked";
+import type { ChatResponse } from "#shared/types/chat";
+
 import DOMPurify from "isomorphic-dompurify";
 
 const renderMarkdown = (content: string) => {
@@ -24,6 +26,7 @@ const messages = ref<Message[]>([
 ]);
 
 const userMessage = ref<string>("");
+const lastMessageWasResume = ref<boolean>(false);
 const isLoading = ref<boolean>(false);
 
 const handleUserMessage = async () => {
@@ -43,18 +46,27 @@ const handleUserMessage = async () => {
 
   // Call the API to get the assistant's response
   try {
-    const res = await useFetch("/api/ai/chat", {
+    const res = await $fetch<ChatResponse>("/api/ai/chat", {
       method: "POST",
       body: {
         messages: messages.value,
       },
     });
 
-    if (res.data.value) {
-      messages.value.push({
-        role: "assistant",
-        content: res.data.value,
-      });
+    if (!res) {
+      throw new Error("No response from the server");
+    }
+
+    messages.value.push({
+      role: "assistant",
+      content: res.message,
+    });
+
+    // Used to put the "Generate Resume" button in the last message if the response type is "resume"
+    if (res.type === "resume") {
+      lastMessageWasResume.value = true;
+    } else {
+      lastMessageWasResume.value = false;
     }
   } finally {
     isLoading.value = false;
@@ -104,6 +116,13 @@ definePageMeta({
                 class="prose prose-sm dark:prose-invert max-w-none"
                 v-html="renderMarkdown(message.content)"
               />
+
+              <div
+                v-if="lastMessageWasResume && index === messages.length - 1"
+                class="mt-1"
+              >
+                <UButton variant="outline"> Gerar Curriculo </UButton>
+              </div>
             </div>
           </template>
 
