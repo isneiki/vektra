@@ -37,6 +37,12 @@ export default defineEventHandler(async (event) => {
     store: false,
   });
 
-  // You may complain, but this just works. Okay?
-  return JSON.parse(response.output_text) as ChatResponse;
+  try {
+    return JSON.parse(response.output_text) as ChatResponse;
+  } catch {
+    throw createError({
+      statusCode: 502,
+      statusMessage: "AI returned an invalid response",
+    });
+  }
 });
