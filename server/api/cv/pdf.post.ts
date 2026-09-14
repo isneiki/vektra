@@ -1,4 +1,4 @@
-import { chromium as playwright } from "playwright-core";
+import { chromium as playwright } from "playwright";
 import chromium from "@sparticuz/chromium";
 
 export default defineEventHandler(async (event) => {
