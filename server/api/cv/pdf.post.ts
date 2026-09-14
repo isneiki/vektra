@@ -2,6 +2,17 @@ import { chromium as playwright } from "playwright-core";
 import chromium from "@sparticuz/chromium";
 
 export default defineEventHandler(async (event) => {
+  const session = await auth.api.getSession({
+    headers: event.headers,
+  });
+
+  if (!session) {
+    return sendError(
+      event,
+      createError({ statusCode: 401, statusMessage: "Unauthorized" }),
+    );
+  }
+
   const body = await readBody<{
     html: string;
   }>(event);
