@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@nuxt/ui";
 
 :root {
@@ -13,4 +14,8 @@
 
 @theme static {
   --color-brand-500: #4d694e;
+}
+
+textarea {
+  @apply border border-default;
 }
