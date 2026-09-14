@@ -70,6 +70,8 @@ const handleUserMessage = async () => {
     } else {
       lastMessageWasResume.value = false;
     }
+  } catch (error) {
+    console.error("Error fetching assistant response:", error);
   } finally {
     isLoading.value = false;
   }
@@ -168,8 +170,12 @@ definePageMeta({
                 v-if="lastMessageWasResume && index === messages.length - 1"
                 class="mt-1"
               >
-                <UButton @click="handleGenerateResume" variant="outline">
-                  Gerar Curriculo
+                <UButton
+                  @click="handleGenerateResume"
+                  variant="outline"
+                  :disabled="isLoading"
+                >
+                  Gerar Currículo
                 </UButton>
               </div>
             </div>
