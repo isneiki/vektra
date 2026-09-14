@@ -70,6 +70,8 @@ const handleUserMessage = async () => {
     } else {
       lastMessageWasResume.value = false;
     }
+  } catch (error) {
+    console.error("Error fetching assistant response:", error);
   } finally {
     isLoading.value = false;
   }
