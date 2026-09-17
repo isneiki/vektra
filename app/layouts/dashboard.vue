@@ -5,8 +5,8 @@ const route = useRoute();
 const items = computed<NavigationMenuItem[][]>(() => [
   [
     {
-      label: "Home",
-      icon: "i-lucide-house",
+      label: "Chat",
+      icon: "i-lucide-message-square",
       to: "/user/dashboard",
       active: route.path === "/user/dashboard",
     },
