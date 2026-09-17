@@ -50,6 +50,27 @@ const items = computed<NavigationMenuItem[][]>(() => [
   ],
 ]);
 
+const userMenuItems = [
+  [
+    {
+      label: "Settings",
+      icon: "i-lucide-settings",
+      to: "/user/dashboard/settings/general",
+    },
+  ],
+  [
+    {
+      label: "Logout",
+      icon: "i-lucide-log-out",
+      onSelect: async () => {
+        await authClient.signOut();
+
+        await navigateTo("/user/login");
+      },
+    },
+  ],
+];
+
 const { data: session } = await authClient.getSession();
 </script>
 
@@ -102,19 +123,27 @@ const { data: session } = await authClient.getSession();
         </template>
 
         <template #footer="{ collapsed }">
-          <UButton
-            :avatar="{
-              src: session?.user.image
-                ? session.user.image
-                : '/images/avatar.png',
-              loading: 'lazy' as const,
+          <UDropdownMenu
+            :items="userMenuItems"
+            :content="{
+              align: 'end',
+              side: collapsed ? 'right' : 'top',
             }"
-            :label="collapsed ? undefined : session?.user.name"
-            color="neutral"
-            variant="ghost"
-            class="w-full"
-            :block="collapsed"
-          />
+          >
+            <UButton
+              :avatar="{
+                src: session?.user.image
+                  ? session.user.image
+                  : '/images/avatar.png',
+                loading: 'lazy' as const,
+              }"
+              :label="collapsed ? undefined : session?.user.name"
+              color="neutral"
+              variant="ghost"
+              class="w-full"
+              :block="collapsed"
+            />
+          </UDropdownMenu>
         </template>
       </UDashboardSidebar>
 
