@@ -5,6 +5,11 @@ export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  // phone: text("phone"),
+  // plan: text("plan").default("free").notNull(),
+  // linkedin: text("linkedin"),
+  // github: text("github"),
+  // summary: text("summary"),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -12,7 +17,22 @@ export const user = pgTable("user", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
+
+  // skills: text("skills"),
+  // education: text("education"),
+  // location: text("location"),
 });
+
+// export const experiences = pgTable("experience", {
+//   id: text("id").primaryKey(),
+//   userId: text("user_id").notNull(),
+
+//   company: text("company").notNull(),
+//   position: text("position").notNull(),
+//   startDate: timestamp("start_date").notNull(),
+//   endDate: timestamp("end_date").notNull(),
+//   description: text("description").notNull(),
+// });
 
 export const session = pgTable(
   "session",
