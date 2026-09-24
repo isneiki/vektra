@@ -1,75 +1,48 @@
-# Nuxt Minimal Starter
+# Vektra
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Vektra is an open-source (mvp) curriculum generation powered by openai. It helps you improve your actual curriculum, generate new ones, and get tips from a trained AI ready to assist you in your get-a-job journey.
 
-## Setup
+## 🔨 Technologies
 
-Make sure to install dependencies:
+- Nuxt / Vue
+- NuxtUI
+- TailwindCSS
+- Better-auth
+- Drizzle-orm (postgresSql)
+- Zod
+- ...
 
-```bash
-# npm
-npm install
+## 🚀 Features
 
-# pnpm
-pnpm install
+- Curriculum generation PDF
+- Front-end + Back-end
+- Openai integration
+- User authentication
 
-# yarn
-yarn install
+## 💡 The process
 
-# bun
-bun install
-```
+This project was created for an school assignment. I needed to create a solution for a problem, that I would describe, find at least 3 solutions and apply one of them. The problem chosen is that people are getting constantly rejected by ATS robots, so I built an AI that will help you prevent that.
 
-## Development Server
+## 🏃 Running the Project
 
-Start the development server on `http://localhost:3000`:
+1. Clone the repository with `$ git clone https://github.com/isneiki/vektra.git`
+2. Rename `.env.example` to `.env` (on linux: `$ mv .env.example .env`)
+3. Fill in the information needed inside the `.env` file
+4. Run `$ bun install` to install dependencies needed
+5. Run `$ bun run dev` or `$ bun run build` to preview or build the project
+6. Open `localhost:3000` in your browser
 
-```bash
-# npm
-npm run dev
+## 📜 What I learned
 
-# pnpm
-pnpm dev
+- Building an entire project from start to end.
+- Integration with openai.
+- Familiarizing myself with Nuxt
+- What actually matters in a real product
 
-# yarn
-yarn dev
+## ❓ What to do next?
 
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Chat history
+- Typst integration isntead of chromium based pdf generation
+- Settings for unexperienced users
+- Better prompts in order to get better curriculums
+- ...
