@@ -11,19 +11,8 @@ const renderMarkdown = (content: string) => {
   return DOMPurify.sanitize(html);
 };
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
-
 const messagesContainer = ref<HTMLElement | null>(null);
-const messages = ref<Message[]>([
-  {
-    role: "assistant",
-    content:
-      "Olá! Eu sou o VektrAI, seu assistente de criação de currículos. Como posso ajudá-lo hoje?",
-  },
-]);
+const messages = useMessages();
 
 const userMessage = ref<string>("");
 const resumeResponse = ref<string>("");
