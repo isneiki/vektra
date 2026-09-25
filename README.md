@@ -1,48 +1,55 @@
 # Vektra
 
-Vektra is an open-source (mvp) curriculum generation powered by openai. It helps you improve your actual curriculum, generate new ones, and get tips from a trained AI ready to assist you in your get-a-job journey.
+Vektra is an open-source (MVP) resume-generation platform powered by OpenAI. It helps you improve your existing resume, generate new ones, and get tips from a trained AI assistant ready to help you on your job-search journey.
 
 ## 🔨 Technologies
 
 - Nuxt / Vue
-- NuxtUI
-- TailwindCSS
-- Better-auth
-- Drizzle-orm (postgresSql)
+- Nuxt UI
+- Tailwind CSS
+- Better Auth
+- Drizzle ORM (PostgreSQL)
 - Zod
 - ...
 
 ## 🚀 Features
 
-- Curriculum generation PDF
-- Front-end + Back-end
-- Openai integration
+- PDF resume generation
+- Front-end + back-end
+- OpenAI integration
 - User authentication
 
-## 💡 The process
+## 💡 The Process
 
-This project was created for an school assignment. I needed to create a solution for a problem, that I would describe, find at least 3 solutions and apply one of them. The problem chosen is that people are getting constantly rejected by ATS robots, so I built an AI that will help you prevent that.
+This project was created for a school assignment. I needed to identify a problem, describe it, come up with at least three possible solutions, and implement one of them.
+
+The problem I chose was that people are frequently rejected by ATS systems, so I built an AI assistant designed to help users improve their resumes and increase their compatibility with ATS requirements.
 
 ## 🏃 Running the Project
 
-1. Clone the repository with `$ git clone https://github.com/isneiki/vektra.git`
-2. Rename `.env.example` to `.env` (on linux: `$ mv .env.example .env`)
-3. Fill in the information needed inside the `.env` file
-4. Run `$ bun install` to install dependencies needed
-5. Run `$ bun run dev` or `$ bun run build` to preview or build the project
-6. Open `localhost:3000` in your browser
+1. Clone the repository with `git clone https://github.com/isneiki/vektra.git`
 
-## 📜 What I learned
+2. Rename `.env.example` to `.env` (on Linux: `mv .env.example .env`)
 
-- Building an entire project from start to end.
-- Integration with openai.
-- Familiarizing myself with Nuxt
-- What actually matters in a real product
+3. Fill in the required information in the `.env` file.
 
-## ❓ What to do next?
+4. Run `bun install` to install the required dependencies.
+
+5. Run `bun run dev` or `bun run build` to start the development server or build the project.
+
+6. Open `localhost:3000` in your browser.
+
+## 📜 What I Learned
+
+- Building an entire project from start to finish.
+- Integrating OpenAI into an application.
+- Familiarizing myself with Nuxt.
+- Understanding what actually matters when building a real product.
+
+## ❓ What to Do Next?
 
 - Chat history
-- Typst integration isntead of chromium based pdf generation
-- Settings for unexperienced users
-- Better prompts in order to get better curriculums
+- Typst integration instead of Chromium-based PDF generation
+- Settings designed for inexperienced users
+- Better prompts to improve resume generation
 - ...
