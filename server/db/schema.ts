@@ -1,10 +1,24 @@
 import { relations } from "drizzle-orm/_relations";
-import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  index,
+  date,
+  jsonb,
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  phone: text("phone"),
+  location: text("location"),
+  plan: text("plan").default("free").notNull(),
+  linkedin: text("linkedin"),
+  github: text("github"),
+  summary: text("summary"),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -12,6 +26,46 @@ export const user = pgTable("user", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
+
+  skills: jsonb("skills").$type<string[]>().default([]).notNull(),
+});
+
+export const experiences = pgTable("experience", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+
+  company: text("company").notNull(),
+  position: text("position").notNull(),
+
+  startDate: date("start_date", {
+    mode: "string",
+  }).notNull(),
+  endDate: date("end_date", {
+    mode: "string",
+  }),
+
+  current: boolean("current").default(false).notNull(),
+
+  description: text("description").notNull(),
+});
+
+export const educations = pgTable("education", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+
+  institution: text("institution").notNull(),
+  degree: text("degree").notNull(),
+
+  startDate: date("start_date", {
+    mode: "string",
+  }).notNull(),
+  endDate: date("end_date", {
+    mode: "string",
+  }),
+
+  current: boolean("current").default(false).notNull(),
+
+  description: text("description").notNull(),
 });
 
 export const session = pgTable(

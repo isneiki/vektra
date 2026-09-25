@@ -5,16 +5,10 @@ const route = useRoute();
 const items = computed<NavigationMenuItem[][]>(() => [
   [
     {
-      label: "Home",
-      icon: "i-lucide-house",
+      label: "Chat",
+      icon: "i-lucide-message-square",
       to: "/user/dashboard",
       active: route.path === "/user/dashboard",
-    },
-    {
-      label: "Analytics",
-      icon: "i-lucide-bar-chart-3",
-      to: "/user/dashboard/analytics",
-      active: route.path === "/user/dashboard/analytics",
     },
     {
       label: "Settings",
@@ -25,11 +19,6 @@ const items = computed<NavigationMenuItem[][]>(() => [
           label: "General",
           to: "/user/dashboard/settings/general",
           active: route.path === "/user/dashboard/settings/general",
-        },
-        {
-          label: "Security",
-          to: "/user/dashboard/settings/security",
-          active: route.path === "/user/dashboard/settings/security",
         },
       ],
     },
@@ -50,6 +39,27 @@ const items = computed<NavigationMenuItem[][]>(() => [
   ],
 ]);
 
+const userMenuItems = [
+  [
+    {
+      label: "Settings",
+      icon: "i-lucide-settings",
+      to: "/user/dashboard/settings/general",
+    },
+  ],
+  [
+    {
+      label: "Logout",
+      icon: "i-lucide-log-out",
+      onSelect: async () => {
+        await authClient.signOut();
+
+        await navigateTo("/user/login");
+      },
+    },
+  ],
+];
+
 const { data: session } = await authClient.getSession();
 </script>
 
@@ -62,31 +72,17 @@ const { data: session } = await authClient.getSession();
         :ui="{ footer: 'border-t border-default' }"
       >
         <template #header="{ collapsed }">
-          <Logo v-if="!collapsed" class="h-5 w-auto shrink-0" />
+          <p v-if="!collapsed" class="text-lg font-bold w-auto shrink-0">
+            Vektra
+          </p>
           <UIcon
             v-else
-            name="i-simple-icons-nuxtdotjs"
+            name="i-simple-icons-v"
             class="size-5 text-primary mx-auto"
           />
         </template>
 
         <template #default="{ collapsed }">
-          <UButton
-            :label="collapsed ? undefined : 'Search...'"
-            icon="i-lucide-search"
-            color="neutral"
-            variant="outline"
-            block
-            :square="collapsed"
-          >
-            <template v-if="!collapsed" #trailing>
-              <div class="flex items-center gap-0.5 ms-auto">
-                <UKbd value="meta" variant="subtle" />
-                <UKbd value="K" variant="subtle" />
-              </div>
-            </template>
-          </UButton>
-
           <UNavigationMenu
             :collapsed="collapsed"
             :items="items[0]"
@@ -102,19 +98,27 @@ const { data: session } = await authClient.getSession();
         </template>
 
         <template #footer="{ collapsed }">
-          <UButton
-            :avatar="{
-              src: session?.user.image
-                ? session.user.image
-                : '/images/avatar.png',
-              loading: 'lazy' as const,
+          <UDropdownMenu
+            :items="userMenuItems"
+            :content="{
+              align: 'end',
+              side: collapsed ? 'right' : 'top',
             }"
-            :label="collapsed ? undefined : session?.user.name"
-            color="neutral"
-            variant="ghost"
-            class="w-full"
-            :block="collapsed"
-          />
+          >
+            <UButton
+              :avatar="{
+                src: session?.user.image
+                  ? session.user.image
+                  : '/images/avatar.png',
+                loading: 'lazy' as const,
+              }"
+              :label="collapsed ? undefined : session?.user.name"
+              color="neutral"
+              variant="ghost"
+              class="w-full"
+              :block="collapsed"
+            />
+          </UDropdownMenu>
         </template>
       </UDashboardSidebar>
 

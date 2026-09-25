@@ -4,27 +4,6 @@ import type { SelectMenuItem } from "@nuxt/ui";
 const { locale, locales, setLocale } = useI18n();
 const localePath = useLocalePath();
 
-const selectedLocale = ref(locale.value == "en" ? "english" : "portugues");
-
-const items = ref<SelectMenuItem[]>([
-  {
-    label: "English",
-    value: "english",
-    onSelect: () => {
-      setLocale("en");
-      localePath("index");
-    },
-  },
-  {
-    label: "Português",
-    value: "portugues",
-    onSelect: () => {
-      setLocale("pt");
-      localePath("index");
-    },
-  },
-]);
-
 const { data: session } = await authClient.getSession();
 </script>
 
@@ -35,11 +14,6 @@ const { data: session } = await authClient.getSession();
         <NuxtLink to="/" class="text-xl text-black font-bold mr-4"
           >Vektra</NuxtLink
         >
-        <USelectMenu
-          class="overflow-visible"
-          v-model="selectedLocale"
-          :items="items"
-        />
       </template>
 
       <template #right>

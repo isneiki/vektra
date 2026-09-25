@@ -4,26 +4,15 @@ const { data: session } = await authClient.getSession();
 import { marked } from "marked";
 import type { ChatResponse } from "#shared/types/chat";
 
-import DOMPurify from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 
 const renderMarkdown = (content: string) => {
   const html = marked.parse(content) as string;
   return DOMPurify.sanitize(html);
 };
 
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
-
 const messagesContainer = ref<HTMLElement | null>(null);
-const messages = ref<Message[]>([
-  {
-    role: "assistant",
-    content:
-      "Olá! Eu sou o VektrAI, seu assistente de criação de currículos. Como posso ajudá-lo hoje?",
-  },
-]);
+const messages = useMessages();
 
 const userMessage = ref<string>("");
 const resumeResponse = ref<string>("");
@@ -137,7 +126,7 @@ definePageMeta({
 
 <template>
   <UContainer
-    class="flex h-[calc(100vh-10rem)] flex-col overflow-hidden md:ml-12 md:rounded-xl md:border md:border-default"
+    class="flex h-full w-full flex-col overflow-hidden md:rounded-xl md:border md:border-default"
   >
     <!-- Messages -->
     <div ref="messagesContainer" class="flex-1 overflow-y-auto px-4 py-6">
@@ -162,18 +151,21 @@ definePageMeta({
               <p class="mb-1 text-sm font-semibold">VektrAI</p>
 
               <div
-                class="prose prose-sm dark:prose-invert max-w-none"
+                class="prose prose-sm dark:prose-invert max-w-none md:text-lg"
                 v-html="renderMarkdown(message.content)"
               />
 
               <div
                 v-if="lastMessageWasResume && index === messages.length - 1"
-                class="mt-1"
+                class="mt-px"
               >
                 <UButton
                   @click="handleGenerateResume"
                   variant="outline"
+                  aria-label="Gerar Currículo"
+                  icon="i-lucide-file-text"
                   :disabled="isLoading"
+                  :loading="isLoading"
                 >
                   Gerar Currículo
                 </UButton>
@@ -240,6 +232,7 @@ definePageMeta({
             :maxrows="8"
             placeholder="Digite sua mensagem..."
             class="w-full"
+            aria-label="Digite sua mensagem"
             @keydown="handleInputKeydown"
           />
 
