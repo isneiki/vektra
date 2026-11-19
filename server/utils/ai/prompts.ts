@@ -14,4 +14,7 @@ export const prompts = {
     id: "pmpt_6aa43cf29ea88197b0f4a69692cb0033091696fdd48dff5b",
     version: "4",
   },
+  missing: {
+    id: "pmpt_6ac05e31a1008190ba05816fd2ce3b300ac1fe2fdb4f75b0",
+  },
 } as const;

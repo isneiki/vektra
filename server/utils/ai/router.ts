@@ -2,7 +2,7 @@ import { freeModel } from "./models";
 import { prompts } from "./prompts";
 import openai from "../openai";
 
-export type PromptRoute = "general" | "resume" | "technical";
+export type PromptRoute = "general" | "resume" | "technical" | "missing";
 
 interface Message {
   role: "user" | "assistant";
@@ -19,7 +19,12 @@ export async function routePrompt(messages: Message[]): Promise<PromptRoute> {
 
   const route = response.output_text.trim();
 
-  if (route !== "general" && route !== "resume" && route !== "technical") {
+  if (
+    route !== "general" &&
+    route !== "resume" &&
+    route !== "technical" &&
+    route !== "missing"
+  ) {
     return "general";
   }
 
