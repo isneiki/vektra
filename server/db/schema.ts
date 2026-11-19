@@ -5,13 +5,20 @@ import {
   timestamp,
   boolean,
   index,
-  uniqueIndex,
+  date,
+  jsonb,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  phone: text("phone"),
+  location: text("location"),
+  plan: text("plan").default("free").notNull(),
+  linkedin: text("linkedin"),
+  github: text("github"),
+  summary: text("summary"),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -19,6 +26,46 @@ export const user = pgTable("user", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
+
+  skills: jsonb("skills").$type<string[]>().default([]).notNull(),
+});
+
+export const experiences = pgTable("experience", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+
+  company: text("company").notNull(),
+  position: text("position").notNull(),
+
+  startDate: date("start_date", {
+    mode: "string",
+  }).notNull(),
+  endDate: date("end_date", {
+    mode: "string",
+  }),
+
+  current: boolean("current").default(false).notNull(),
+
+  description: text("description").notNull(),
+});
+
+export const educations = pgTable("education", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+
+  institution: text("institution").notNull(),
+  degree: text("degree").notNull(),
+
+  startDate: date("start_date", {
+    mode: "string",
+  }).notNull(),
+  endDate: date("end_date", {
+    mode: "string",
+  }),
+
+  current: boolean("current").default(false).notNull(),
+
+  description: text("description").notNull(),
 });
 
 export const session = pgTable(
@@ -44,7 +91,6 @@ export const account = pgTable(
   "account",
   {
     id: text("id").primaryKey(),
-    issuer: text("issuer").notNull(),
     accountId: text("account_id").notNull(),
     providerId: text("provider_id").notNull(),
     userId: text("user_id")
@@ -62,32 +108,8 @@ export const account = pgTable(
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
   },
-  (table) => [
-    uniqueIndex("account_issuer_accountId_uidx").on(
-      table.issuer,
-      table.accountId,
-    ),
-    index("account_userId_idx").on(table.userId),
-  ],
+  (table) => [index("account_userId_idx").on(table.userId)],
 );
-
-export const subscription = pgTable("subscription", {
-  id: text("id").primaryKey(),
-
-  userId: text("user_id")
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-
-  plan: text("plan").notNull().default("free"),
-
-  status: text("status").notNull().default("active"),
-
-  startedAt: timestamp("started_at").notNull(),
-  expiresAt: timestamp("expires_at"),
-
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
 
 export const verification = pgTable(
   "verification",

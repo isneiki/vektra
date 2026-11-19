@@ -1,75 +1,55 @@
-# Nuxt Minimal Starter
+# Vektra
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Vektra is an open-source (MVP) resume-generation platform powered by OpenAI. It helps you improve your existing resume, generate new ones, and get tips from a trained AI assistant ready to help you on your job-search journey.
 
-## Setup
+## 🔨 Technologies
 
-Make sure to install dependencies:
+- Nuxt / Vue
+- Nuxt UI
+- Tailwind CSS
+- Better Auth
+- Drizzle ORM (PostgreSQL)
+- Zod
+- ...
 
-```bash
-# npm
-npm install
+## 🚀 Features
 
-# pnpm
-pnpm install
+- PDF resume generation
+- Front-end + back-end
+- OpenAI integration
+- User authentication
 
-# yarn
-yarn install
+## 💡 The Process
 
-# bun
-bun install
-```
+This project was created for a school assignment. I needed to identify a problem, describe it, come up with at least three possible solutions, and implement one of them.
 
-## Development Server
+The problem I chose was that people are frequently rejected by ATS systems, so I built an AI assistant designed to help users improve their resumes and increase their compatibility with ATS requirements.
 
-Start the development server on `http://localhost:3000`:
+## 🏃 Running the Project
 
-```bash
-# npm
-npm run dev
+1. Clone the repository with `git clone https://github.com/isneiki/vektra.git`
 
-# pnpm
-pnpm dev
+2. Rename `.env.example` to `.env` (on Linux: `mv .env.example .env`)
 
-# yarn
-yarn dev
+3. Fill in the required information in the `.env` file.
 
-# bun
-bun run dev
-```
+4. Run `bun install` to install the required dependencies.
 
-## Production
+5. Run `bun run dev` or `bun run build` to start the development server or build the project.
 
-Build the application for production:
+6. Open `localhost:3000` in your browser.
 
-```bash
-# npm
-npm run build
+## 📜 What I Learned
 
-# pnpm
-pnpm build
+- Building an entire project from start to finish.
+- Integrating OpenAI into an application.
+- Familiarizing myself with Nuxt.
+- Understanding what actually matters when building a real product.
 
-# yarn
-yarn build
+## ❓ What to Do Next?
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Chat history
+- Typst integration instead of Chromium-based PDF generation
+- Settings designed for inexperienced users
+- Better prompts to improve resume generation
+- ...
